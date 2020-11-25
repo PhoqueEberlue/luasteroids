@@ -11,7 +11,7 @@ function Enemys:new()
 end
 
 function Enemys:addEnemy(player_pos, player_size)
-    local e = Enemy:new(love.math.random(50, 100), player_pos, player_size)
+    local e = Enemy:new(player_pos, player_size)
     table.insert(self.listEnemys, e)
 end
 

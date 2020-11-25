@@ -4,12 +4,13 @@ ScreenWidth = 1920
 ScreenHeigth = 1080
 Speed = 10
 
-Enemy = {x = 0, y = 0, xspeed = 0, yspeed = 0, size = 0}
+Enemy = {}
 Enemy.__index = Enemy
 
-function Enemy:new(size, player_pos, player_size)
+function Enemy:new(player_pos, player_size)
     local e = {}
     setmetatable(e, Enemy)
+    local size = love.math.random(20, 150)
     local pos = Chose({x = love.math.random(0 - size, ScreenWidth), y = Chose(0 - size, ScreenHeigth)}, {x = Chose(0 - size, ScreenWidth), y = love.math.random(0 - size, ScreenHeigth)})
     e.x = pos.x
     e.y = pos.y
