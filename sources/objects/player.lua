@@ -33,44 +33,50 @@ function Player:setHp()
     self.hp = self.hp -1
 end
 
-function Player:setLeft(bool)
-    self.left = bool
-    self.right = not bool
+function Player:setLeft()
+    self.left = true
+    self.top = false
+    self.right = false
+    self.bottom = false
 end
 
-function Player:setTop(bool)
-    self.top = bool
-    self.bottom = not bool
+function Player:setTop()
+    self.left = false
+    self.top = true
+    self.right = false
+    self.bottom = false
+end
+
+function Player:setRight()
+    self.left = false
+    self.top = false
+    self.right = true
+    self.bottom = false
+end
+
+function Player:setBottom()
+    self.left = false
+    self.top = false
+    self.right = false
+    self.bottom = true
 end
 
 function Player:update()
-    if self.left then
-        self.x = self.x - 1
-    end
-    if self.top then
-        self.y = self.y - 1
-    end
-    if self.right then
-        self.x = self.x + 1
-    end
-    if self.bottom then
-        self.y = self.y + 1
-    end
     if love.keyboard.isDown("q") then
         self.x = self.x - self.speed
-        self:setLeft(true)
+        self:setLeft()
     end
     if love.keyboard.isDown("z") then
         self.y = self.y - self.speed
-        self:setTop(true)
+        self:setTop()
     end
     if love.keyboard.isDown("d") then
         self.x = self.x + self.speed
-        self:setLeft(false)
+        self:setRight()
     end
     if love.keyboard.isDown("s") then
         self.y = self.y + self.speed
-        self:setTop(false)
+        self:setBottom()
     end
     if self.x > 1920 then
         self.x = 0
@@ -87,6 +93,18 @@ function Player:update()
 end
 
 function Player:draw()
-    --love.graphics.rectangle("line", self.x, self.y, self.size, self.size)
-    love.graphics.draw(self.spaceship, self.x, self.y)
+    local deg = 0
+    if self.left then
+        deg = 270
+    end
+    if self.top then
+        deg = 0
+    end
+    if self.right then
+        deg = 90
+    end
+    if self.bottom then
+        deg = 180
+    end
+    love.graphics.draw(self.spaceship, self.x, self.y, math.rad(deg), 1, 1, 50 / 2, 50 / 2)
 end

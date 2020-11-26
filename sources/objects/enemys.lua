@@ -10,24 +10,20 @@ function Enemys:new()
     return es
 end
 
-function Enemys:addEnemy(player_pos, player_size)
-    local e = Enemy:new(player_pos, player_size)
+function Enemys:addEnemy(player_pos, asteroid)
+    local e = Enemy:new(player_pos, asteroid)
     table.insert(self.listEnemys, e)
 end
 
 function Enemys:removeEnemy(e)
     local index = nil
-    if self.listEnemys then
-        for i, en in pairs(self.listEnemys) do
-            if tostring(en) == e then
-                index = i
-                break
-            end
-        end
-        if index then
-            table.remove(self.listEnemys, index)
+    for i, en in pairs(self.listEnemys) do
+        if tostring(en) == tostring(e) then
+            index = i
+            break
         end
     end
+    table.remove(self.listEnemys, index)
 end
 
 function Enemys:update(pos, size)
@@ -45,7 +41,7 @@ function Enemys:update(pos, size)
         end
     end
     for _, e in pairs(outOfScreenEnemys) do
-        self.removeEnemy(e)
+        self:removeEnemy(e)
     end
     return res
 end

@@ -1,7 +1,8 @@
 function love.load()
     require("sources/startup/startup")
     local spaceship = love.graphics.newImage("spaceship.png")
-    Startup(spaceship)
+    Asteroid = love.graphics.newImage("asteroid.png")
+    Startup(spaceship, Asteroid)
     Hp = 100
     Tmp = 0
 end
@@ -14,12 +15,12 @@ function love.update(dt)
     end
     if Tmp == 60 then
         Tmp = 0
-        GameEnemys:addEnemy({x = GamePlayer.x, y = GamePlayer.y}, GamePlayer.size)
+        GameEnemys:addEnemy({x = GamePlayer.x, y = GamePlayer.y}, Asteroid)
     else
         Tmp = Tmp + 1
     end
     if Tmp == 30 then
-        GameEnemys:addEnemy({x = GamePlayer.x, y = GamePlayer.y}, GamePlayer.size)
+        GameEnemys:addEnemy({x = GamePlayer.x, y = GamePlayer.y}, Asteroid)
     end
 end
 

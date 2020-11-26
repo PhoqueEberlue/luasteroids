@@ -6,15 +6,13 @@ function Chose(item1, item2)
     end
 end
 
-function Trajectory(pos1, pos2, size1, size2, speed)
+function Trajectory(pos1, pos2, speed)
     local ratio = 0
     local res = 0
-    speed = speed * ((200 - size1)/75)
-    print(speed)
     local xplus = true
     local yplus = true
-    local resx = (pos1.x + math.floor(size1/2)) - (pos2.x + math.floor(size2/2))
-    local resy = (pos1.y + math.floor(size1/2)) - (pos2.y + math.floor(size2/2))
+    local resx = pos1.x - pos2.x
+    local resy = pos1.y - pos2.y
     if resx < 0 then
         xplus = false
         resx = math.abs(resx)
