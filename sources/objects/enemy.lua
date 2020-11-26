@@ -30,13 +30,12 @@ function Enemy:update()
 end
 
 function Enemy:draw()
-    love.graphics.draw(self.asteroid, self.x, self.y, math.rad(0), 1, 1, 50 / 2, 50 / 2)
+    love.graphics.draw(self.asteroid, self.x, self.y, math.rad(0), 1, 1, self.half, self.half)
 end
 
 function Enemy:collide(pos, size)
-    local half = size/2
-    if pos.x + half > self.x and pos.x - half < self.x + self.size then
-        if pos.y + half > self.y and pos.y - half < self.y + self.size then
+    if pos.x + self.half > self.x and pos.x - self.half < self.x + self.size then
+        if pos.y + self.half > self.y and pos.y - self.half < self.y + self.size then
             return true
         end
     end

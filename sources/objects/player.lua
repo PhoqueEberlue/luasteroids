@@ -9,6 +9,7 @@ function Player:new(x, y, speed, size, spaceship)
     p.spaceship = spaceship
     p.speed = speed
     p.size = size
+    p.half = size/2
     p.hp = 100
     p.left = false
     p.top = false
@@ -106,5 +107,5 @@ function Player:draw()
     if self.bottom then
         deg = 180
     end
-    love.graphics.draw(self.spaceship, self.x, self.y, math.rad(deg), 1, 1, 50 / 2, 50 / 2)
+    love.graphics.draw(self.spaceship, self.x, self.y, math.rad(deg), 1, 1, self.half, self.half)
 end
