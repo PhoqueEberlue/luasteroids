@@ -1,8 +1,6 @@
 function love.load()
     require("sources/startup/startup")
-    local spaceship = love.graphics.newImage("sources/img/spaceship.png")
-    local asteroid = love.graphics.newImage("sources/img/asteroid.png")
-    GameEnvironment = Startup(spaceship, asteroid)
+    GameEnvironment = Startup()
     GameEnvironment.window.setFullScreen()
     Hp = 100
     Tmp = 0
