@@ -26,7 +26,7 @@ function Enemys:removeEnemy(e)
     table.remove(self.listEnemys, index)
 end
 
-function Enemys:update(pos, size)
+function Enemys:update(dt, pos, size)
     local res = false
     local outOfScreenEnemys = {}
     for _, e in pairs(self.listEnemys) do
@@ -35,7 +35,7 @@ function Enemys:update(pos, size)
             if not res then
                 res = e:collide(pos, size)
             end
-            e:update()
+            e:update(dt)
         else
             table.insert(outOfScreenEnemys, e)
         end

@@ -62,34 +62,34 @@ function Player:setBottom()
     self.bottom = true
 end
 
-function Player:update()
+function Player:update(dt)
     if love.keyboard.isDown("q") then
-        self.x = self.x - self.speed
+        self.x = self.x - self.speed * dt
         self:setLeft()
     end
     if love.keyboard.isDown("z") then
-        self.y = self.y - self.speed
+        self.y = self.y - self.speed * dt
         self:setTop()
     end
     if love.keyboard.isDown("d") then
-        self.x = self.x + self.speed
+        self.x = self.x + self.speed * dt
         self:setRight()
     end
     if love.keyboard.isDown("s") then
-        self.y = self.y + self.speed
+        self.y = self.y + self.speed * dt
         self:setBottom()
     end
-    if self.x > 1920 then
-        self.x = 0
+    if self.x - self.half > 1920 then
+        self.x = 1 - self.half
     end
-    if self.x < 0 then
-        self.x = 1920
+    if self.x + self.half < 0 then
+        self.x = 1920 + 1 - self.half
     end
-    if self.y > 1080 then
-        self.y = 0
+    if self.y - self.half > 1080 then
+        self.y = 1 - self.half
     end
-    if self.y < 0 then
-        self.y = 1080
+    if self.y + self.half < 0 then
+        self.y = 1080 + 1 - self.half
     end
 end
 

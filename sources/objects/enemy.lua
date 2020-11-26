@@ -2,7 +2,7 @@ require("sources/lib/customFunctions")
 
 ScreenWidth = 1920
 ScreenHeigth = 1080
-Speed = 10
+Speed = 600
 
 Enemy = {}
 Enemy.__index = Enemy
@@ -24,9 +24,9 @@ function Enemy:new(player_pos, asteroid)
     return e
 end
 
-function Enemy:update()
-    self.x = self.x + self.xspeed
-    self.y = self.y + self.yspeed
+function Enemy:update(dt)
+    self.x = self.x + self.xspeed * dt
+    self.y = self.y + self.yspeed * dt
 end
 
 function Enemy:draw()

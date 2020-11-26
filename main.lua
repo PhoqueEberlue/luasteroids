@@ -8,8 +8,8 @@ function love.load()
 end
 
 function love.update(dt)
-    GamePlayer:update()
-    if GameEnemys:update(GamePlayer:getPos(), GamePlayer:getSize()) then
+    GamePlayer:update(dt)
+    if GameEnemys:update(dt, GamePlayer:getPos(), GamePlayer:getSize()) then
         GamePlayer:setHp()
         Hp = Hp - 1
     end
