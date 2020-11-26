@@ -1,32 +1,19 @@
 function love.load()
     require("sources/startup/startup")
     local spaceship = love.graphics.newImage("sources/img/spaceship.png")
-    Asteroid = love.graphics.newImage("sources/img/asteroid.png")
-    Startup(spaceship, Asteroid)
+    local asteroid = love.graphics.newImage("sources/img/asteroid.png")
+    GameEnvironment = Startup(spaceship, asteroid)
+    GameEnvironment.window.setFullScreen()
     Hp = 100
     Tmp = 0
 end
 
 function love.update(dt)
-    GamePlayer:update(dt)
-    if GameEnemys:update(dt, GamePlayer:getPos(), GamePlayer:getSize()) then
-        GamePlayer:setHp()
-        Hp = Hp - 1
-    end
-    if Tmp == 60 then
-        Tmp = 0
-        GameEnemys:addEnemy({x = GamePlayer.x, y = GamePlayer.y}, Asteroid)
-    else
-        Tmp = Tmp + 1
-    end
-    if Tmp == 30 then
-        GameEnemys:addEnemy({x = GamePlayer.x, y = GamePlayer.y}, Asteroid)
-    end
+    GameEnvironment:update(dt)
 end
 
 function love.draw()
-    GamePlayer:draw()
-    GameEnemys:draw()
+    GameEnvironment:draw()
     love.graphics.print(Hp)
 end
 

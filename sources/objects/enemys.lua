@@ -3,15 +3,16 @@ require("sources/objects/enemy")
 Enemys = {}
 Enemys.__index = Enemys
 
-function Enemys:new()
+function Enemys:new(asteroid)
     local es = {}
     setmetatable(es, Enemys)
     es.listEnemys = {}
+    es.asteroid = asteroid
     return es
 end
 
-function Enemys:addEnemy(player_pos, asteroid)
-    local e = Enemy:new(player_pos, asteroid)
+function Enemys:addEnemy(player_pos)
+    local e = Enemy:new(player_pos, self.asteroid)
     table.insert(self.listEnemys, e)
 end
 
