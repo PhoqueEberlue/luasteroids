@@ -9,6 +9,10 @@ function Window:new()
     return w
 end
 
+function Window:setFullScreen()
+    love.window.setFullscreen(true)
+end
+
 function Window:getWidth()
     return self.screenWidth
 end
