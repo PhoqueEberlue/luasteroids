@@ -1,7 +1,7 @@
 function love.load()
     require("sources/startup/startup")
-    local spaceship = love.graphics.newImage("spaceship.png")
-    Asteroid = love.graphics.newImage("asteroid.png")
+    local spaceship = love.graphics.newImage("sources/img/spaceship.png")
+    Asteroid = love.graphics.newImage("sources/img/asteroid.png")
     Startup(spaceship, Asteroid)
     Hp = 100
     Tmp = 0
