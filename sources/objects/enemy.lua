@@ -8,20 +8,20 @@ Enemy = {}
 Enemy.__index = Enemy
 
 function Enemy:new(player_pos, asteroid)
-    local e = {}
-    setmetatable(e, Enemy)
+    local enemy = {}
+    setmetatable(enemy, Enemy)
     local size = 50
     local half = size / 2
     local pos = Chose({x = love.math.random(0 - half, ScreenWidth + half), y = Chose(0 - half, ScreenHeigth + half)}, {x = Chose(0 - half, ScreenWidth + half), y = love.math.random(0 - half, ScreenHeigth + half)})
-    e.x = pos.x
-    e.y = pos.y
-    local speed = Trajectory({x = e.x, y = e.y}, player_pos, Speed)
-    e.xspeed = speed.x
-    e.yspeed = speed.y
-    e.size = size
-    e.half = half
-    e.asteroid = asteroid
-    return e
+    enemy.x = pos.x
+    enemy.y = pos.y
+    local speed = Trajectory({x = enemy.x, y = enemy.y}, player_pos, Speed)
+    enemy.xspeed = speed.x
+    enemy.yspeed = speed.y
+    enemy.size = size
+    enemy.half = half
+    enemy.asteroid = asteroid
+    return enemy
 end
 
 function Enemy:update(dt)
@@ -33,7 +33,7 @@ function Enemy:draw()
     love.graphics.draw(self.asteroid, self.x, self.y, math.rad(0), 1, 1, self.half, self.half)
 end
 
-function Enemy:collide(pos, size)
+function Enemy:collide(pos)
     if pos.x + self.half > self.x and pos.x - self.half < self.x + self.size then
         if pos.y + self.half > self.y and pos.y - self.half < self.y + self.size then
             return true

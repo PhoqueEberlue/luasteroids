@@ -2,20 +2,20 @@ Player = {}
 Player.__index = Player
 
 function Player:new(x, y, speed, size, spaceship)
-    local p = {}
-    setmetatable(p, Player)
-    p.x = x
-    p.y = y
-    p.spaceship = spaceship
-    p.speed = speed
-    p.size = size
-    p.half = size/2
-    p.hp = 100
-    p.left = false
-    p.top = false
-    p.right = false
-    p.bottom = false
-    return p
+    local player = {}
+    setmetatable(player, Player)
+    player.x = x
+    player.y = y
+    player.spaceship = spaceship
+    player.speed = speed
+    player.size = size
+    player.half = size/2
+    player.hp = 100
+    player.left = false
+    player.top = false
+    player.right = false
+    player.bottom = false
+    return player
 end
 
 function Player:getPos()

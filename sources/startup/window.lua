@@ -2,11 +2,11 @@ Window = {}
 Window.__index = Window
 
 function Window:new()
-    local w = {}
-    setmetatable(w, Window)
-    w.screenWidth = 1920
-    w.screenHeight = 1080
-    return w
+    local window = {}
+    setmetatable(window, Window)
+    window.screenWidth = 1920
+    window.screenHeight = 1080
+    return window
 end
 
 function Window:setFullScreen()
