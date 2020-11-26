@@ -1,23 +1,19 @@
-require("sources/lib/customFunctions")
-
 ScreenWidth = 1920
 ScreenHeigth = 1080
-Speed = 600
 
 Enemy = {}
 Enemy.__index = Enemy
 
-function Enemy:new(player_pos, asteroid)
+function Enemy:new(size, speed, player_pos, asteroid)
     local enemy = {}
     setmetatable(enemy, Enemy)
-    local size = 50
     local half = size / 2
     local pos = Chose({x = love.math.random(0 - half, ScreenWidth + half), y = Chose(0 - half, ScreenHeigth + half)}, {x = Chose(0 - half, ScreenWidth + half), y = love.math.random(0 - half, ScreenHeigth + half)})
     enemy.x = pos.x
     enemy.y = pos.y
-    local speed = Trajectory({x = enemy.x, y = enemy.y}, player_pos, Speed)
-    enemy.xspeed = speed.x
-    enemy.yspeed = speed.y
+    local speeds = Trajectory({x = enemy.x, y = enemy.y}, player_pos, speed)
+    enemy.xspeed = speeds.x
+    enemy.yspeed = speeds.y
     enemy.size = size
     enemy.half = half
     enemy.asteroid = asteroid

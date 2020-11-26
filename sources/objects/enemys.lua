@@ -1,19 +1,21 @@
 require("sources/objects/enemy")
+require("sources/lib/customFunctions")
 
 Enemys = {}
 Enemys.__index = Enemys
 
-function Enemys:new(asteroid)
+function Enemys:new(asteroids)
     local enemys = {}
     setmetatable(enemys, Enemys)
     enemys.list_enemys = {}
-    enemys.asteroid = asteroid
+    enemys.asteroids = asteroids
     return enemys
 end
 
 function Enemys:addEnemy(player_pos)
-    local e = Enemy:new(player_pos, self.asteroid)
-    table.insert(self.list_enemys, e)
+    local enemy = Chose(Enemy:new(50, 600, player_pos, self.asteroids.asteroid_50_img),
+                        Enemy:new(100, 300, player_pos, self.asteroids.asteroid_100_img))
+    table.insert(self.list_enemys, enemy)
 end
 
 function Enemys:removeEnemy(e)
