@@ -18,9 +18,11 @@ function LoadImages()
     images.asteroids = {}
     local spaceship = love.graphics.newImage("sources/img/spaceship.png")
     local asteroid_50 = love.graphics.newImage("sources/img/asteroid_50.png")
+    local asteroid_75 = love.graphics.newImage("sources/img/asteroid_75.png")
     local asteroid_100 = love.graphics.newImage("sources/img/asteroid_100.png")
     images.spaceship_img = spaceship
     images.asteroids.asteroid_50_img = asteroid_50
+    images.asteroids.asteroid_75_img = asteroid_75
     images.asteroids.asteroid_100_img = asteroid_100
     return images
 end
