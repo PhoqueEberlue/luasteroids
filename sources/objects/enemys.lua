@@ -18,6 +18,11 @@ function Enemys:addEnemy(player_pos)
     table.insert(self.list_enemys, enemy)
 end
 
+function Enemys:addCustomEnemy(size, speed, player_pos, x, y)
+    local enemy = Enemy:new(size, speed, player_pos, self.asteroids.asteroid_50_img, x ,y)
+    table.insert(self.list_enemys, enemy)
+end
+
 function Enemys:removeEnemy(e)
     local index = nil
     for i, en in pairs(self.list_enemys) do

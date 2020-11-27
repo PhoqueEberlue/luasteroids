@@ -4,13 +4,18 @@ ScreenHeigth = 1080
 Enemy = {}
 Enemy.__index = Enemy
 
-function Enemy:new(size, speed, player_pos, asteroid)
+function Enemy:new(size, speed, player_pos, asteroid, x, y)
     local enemy = {}
     setmetatable(enemy, Enemy)
     local half = size / 2
-    local pos = Chose({x = love.math.random(0 - half, ScreenWidth + half), y = Chose(0 - half, ScreenHeigth + half)}, {x = Chose(0 - half, ScreenWidth + half), y = love.math.random(0 - half, ScreenHeigth + half)})
-    enemy.x = pos.x
-    enemy.y = pos.y
+    if x == nil or y == nil then
+        local pos = Chose({x = love.math.random(0 - half, ScreenWidth + half), y = Chose(0 - half, ScreenHeigth + half)}, {x = Chose(0 - half, ScreenWidth + half), y = love.math.random(0 - half, ScreenHeigth + half)})
+        enemy.x = pos.x
+        enemy.y = pos.y
+    else
+        enemy.x = x
+        enemy.y = y
+    end
     local speeds = Trajectory({x = enemy.x, y = enemy.y}, player_pos, speed)
     enemy.xspeed = speeds.x
     enemy.yspeed = speeds.y
@@ -29,9 +34,10 @@ function Enemy:draw()
     love.graphics.draw(self.asteroid, self.x, self.y, math.rad(0), 1, 1, self.half, self.half)
 end
 
-function Enemy:collide(pos)
-    if pos.x + self.half > self.x and pos.x - self.half < self.x + self.size then
-        if pos.y + self.half > self.y and pos.y - self.half < self.y + self.size then
+function Enemy:collide(player_pos, player_size)
+    local half = player_size / 2
+    if player_pos.x + half > self.x - self.half and player_pos.x - half < self.x + self.half then
+        if player_pos.y + half > self.y - self.half and player_pos.y - half < self.y + self.half then
             return true
         end
     end
