@@ -22,16 +22,23 @@ function Enemy:new(size, speed, player_pos, asteroid, x, y)
     enemy.size = size
     enemy.half = half
     enemy.asteroid = asteroid
+    enemy.rotation = love.math.random(0, 359)
+    enemy.rspeed = speed/50
     return enemy
 end
 
 function Enemy:update(dt)
     self.x = self.x + self.xspeed * dt
     self.y = self.y + self.yspeed * dt
+    if self.rotation ~= 360 then
+        self.rotation = self.rotation + self.rspeed * dt
+    else
+        self.rotation = 0
+    end
 end
 
 function Enemy:draw()
-    love.graphics.draw(self.asteroid, self.x, self.y, math.rad(0), 1, 1, self.half, self.half)
+    love.graphics.draw(self.asteroid, self.x, self.y, math.rad(self.rotation), 1, 1, self.half, self.half)
 end
 
 function Enemy:collide(player_pos, player_size)
