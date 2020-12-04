@@ -11,10 +11,7 @@ function Player:new(x, y, speed, size, spaceship)
     player.size = size
     player.half = size/2
     player.hp = 100
-    player.left = false
-    player.top = false
-    player.right = false
-    player.bottom = false
+    player.direction = {left = false, top = false, right = false, bottom = false}
     return player
 end
 
@@ -35,31 +32,31 @@ function Player:setHp()
 end
 
 function Player:setLeft()
-    self.left = true
-    self.top = false
-    self.right = false
-    self.bottom = false
+    self.direction.left = true
+    self.direction.top = false
+    self.direction.right = false
+    self.direction.bottom = false
 end
 
 function Player:setTop()
-    self.left = false
-    self.top = true
-    self.right = false
-    self.bottom = false
+    self.direction.left = false
+    self.direction.top = true
+    self.direction.right = false
+    self.direction.bottom = false
 end
 
 function Player:setRight()
-    self.left = false
-    self.top = false
-    self.right = true
-    self.bottom = false
+    self.direction.left = false
+    self.direction.top = false
+    self.direction.right = true
+    self.direction.bottom = false
 end
 
 function Player:setBottom()
-    self.left = false
-    self.top = false
-    self.right = false
-    self.bottom = true
+    self.direction.left = false
+    self.direction.top = false
+    self.direction.right = false
+    self.direction.bottom = true
 end
 
 function Player:update(dt)
@@ -95,16 +92,16 @@ end
 
 function Player:draw()
     local deg = 0
-    if self.left then
+    if self.direction.left then
         deg = 270
     end
-    if self.top then
+    if self.direction.top then
         deg = 0
     end
-    if self.right then
+    if self.direction.right then
         deg = 90
     end
-    if self.bottom then
+    if self.direction.bottom then
         deg = 180
     end
     love.graphics.draw(self.spaceship, self.x, self.y, math.rad(deg), 1, 1, self.half, self.half)
