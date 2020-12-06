@@ -1,8 +1,11 @@
+require("sources/patterns/observer")
+
 ScreenWidth = 1920
 ScreenHeigth = 1080
 
 Enemy = {}
 Enemy.__index = Enemy
+setmetatable(Enemy, Observer)
 
 function Enemy:new(size, speed, player_pos, asteroid, x, y)
     local enemy = {}
@@ -39,16 +42,6 @@ end
 
 function Enemy:draw()
     love.graphics.draw(self.asteroid, self.x, self.y, math.rad(self.rotation), 1, 1, self.half, self.half)
-end
-
-function Enemy:collide(player_pos, player_size)
-    local half = player_size / 2
-    if player_pos.x + half > self.x - self.half and player_pos.x - half < self.x + self.half then
-        if player_pos.y + half > self.y - self.half and player_pos.y - half < self.y + self.half then
-            return true
-        end
-    end
-    return false
 end
 
 function Enemy:isOutOfScreen()

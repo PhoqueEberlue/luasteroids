@@ -1,4 +1,4 @@
-Interface = {name = "interface"} -- if an attribute isn't redefined in impleted classes, it will use Interface's attribute.
+Interface = {name = "interface", list = {}} -- if an attribute isn't redefined in impleted classes, it will use Interface's attribute.
 Interface.__index = Interface
 
 function Interface:bark()
@@ -7,7 +7,9 @@ end
 
 Enemy = {} -- Class that we'll implement
 Enemy.__index = Enemy
+print(Enemy.list)
 setmetatable(Enemy, Interface) -- adds Interface's methods to the Enemy class: implements
+print(Enemy.list)
 
 function Enemy:new(size, name)
     local e = {}
@@ -26,5 +28,6 @@ print(e2.size) -- 10
 e1:bark() -- marex BARK BARK BARK
 e2:bark() -- rhobalas BARK BARK BARK
 e1:bark() -- marex BARK BARK BARK
+print(e1.list)
 
 print(Interface.name) -- interface

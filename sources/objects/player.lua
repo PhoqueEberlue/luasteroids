@@ -27,8 +27,8 @@ function Player:getHp()
     return self.hp
 end
 
-function Player:setHp()
-    self.hp = self.hp -1
+function Player:setHp(hp)
+    self.hp = hp
 end
 
 function Player:setLeft()
