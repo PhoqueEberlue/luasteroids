@@ -8,8 +8,9 @@ function Startup()
 
     return Environment:new(
         Player:new(960, 540, 600, 50, images.spaceship_img),
-        Enemys:new(images.asteroids),
-        Window:new()
+        Enemys:new(),
+        Window:new(),
+        images.asteroids
     )
 end
 
