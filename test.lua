@@ -1,36 +1,30 @@
-Enemy = {id = 0}
-Enemy.__index = Enemy
+Interface = {name = "interface"} -- if an attribute isn't redefined in impleted classes, it will use Interface's attribute.
+Interface.__index = Interface
 
-function Enemy:new(size)
+function Interface:bark()
+    print(self.name.." BARK BARK BARK")
+end
+
+Enemy = {} -- Class that we'll implement
+Enemy.__index = Enemy
+setmetatable(Enemy, Interface) -- adds Interface's methods to the Enemy class: implements
+
+function Enemy:new(size, name)
     local e = {}
     setmetatable(e, Enemy)
     e.size = size
-    Enemy.id = Enemy.id + 1
-    e.id = Enemy.id
+    e.name = name
     return e
 end
 
 
-local e1 = Enemy:new(5)
-local e2 = Enemy:new(10)
-local tab = {}
+local e1 = Enemy:new(5, "marex")
+local e2 = Enemy:new(10, "rhobalas")
 
-table.insert(tab, e1)
-table.insert(tab, e2)
-print(e1)
-print(e2)
-print(e1.size)
-print(e1.id)
-print(e2.size)
-print(e2.id)
-print(tab[1])
-print(tab[2])
-table.remove(tab, 1)
+print(e1.size) -- 5
+print(e2.size) -- 10
+e1:bark() -- marex BARK BARK BARK
+e2:bark() -- rhobalas BARK BARK BARK
+e1:bark() -- marex BARK BARK BARK
 
-print(tab[1])
-print(tab[2])
-
-local oui = {tg = false}
-oui.ok = false
-print(oui.tg)
-print(oui.ok)
+print(Interface.name) -- interface
