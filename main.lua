@@ -14,7 +14,5 @@ end
 function love.draw()
     GameEnvironment:draw()
     love.graphics.print(Hp)
-    love.graphics.print(tostring(love.timer.getFPS( )), 1890, 0)
+    love.graphics.print(tostring(love.timer.getFPS()), 1890, 0)
 end
-
--- réglage nat https://i.imgur.com/j3DwGVX.png
