@@ -92,7 +92,7 @@ function Player:draw()
     if (a == "right" and b == "bot") or (a == "bot" and b == "right") then
         deg = 135
     end
-    if (a == "left" and b == "bot") or (a == "top" and b == "bot") then
+    if (a == "left" and b == "bot") or (a == "bot" and b == "left") then
         deg = 225
     end
     love.graphics.draw(self.spaceship, self.x, self.y, math.rad(deg), 1, 1, self.half, self.half)
