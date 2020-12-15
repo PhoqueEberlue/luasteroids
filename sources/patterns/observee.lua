@@ -18,8 +18,19 @@ end
 
 function Observee:notifyObserver(player_pos, player_size)
     local res = 0
-    for _, e in pairs(self.list_enemys) do
-        if e:collide(player_pos, player_size) then
+    for _, enemy in pairs(self.list_enemys) do
+        for _, enemy2 in pairs(self.list_enemys) do
+            if enemy:collide({x = enemy2.x, y = enemy2.y}, enemy2.size) then
+                local savex = enemy2.xspeed
+                local savey = enemy2.yspeed
+                enemy2.xspeed = enemy.xspeed
+                enemy2.yspeed = enemy.yspeed
+                enemy.xspeed = savex
+                enemy.yspeed = savey
+                break
+            end
+        end
+        if enemy:collide(player_pos, player_size) then
             res = res + 1
         end
     end
