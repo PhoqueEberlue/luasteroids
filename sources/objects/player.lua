@@ -73,26 +73,19 @@ function Player:draw()
     local deg = 0
     if a == "left" and b == "left" then
         deg = 270
-    end
-    if a == "top" and b == "top" then
+    elseif a == "top" and b == "top" then
         deg = 0
-    end
-    if a == "right" and b == "right" then
+    elseif a == "right" and b == "right" then
         deg = 90
-    end
-    if a == "bot" and b == "bot" then
+    elseif a == "bot" and b == "bot" then
         deg = 180
-    end
-    if (a == "left" and b == "top") or (a == "top" and b == "left") then
+    elseif (a == "left" and b == "top") or (a == "top" and b == "left") then
         deg = 315
-    end
-    if (a == "right" and b == "top") or (a == "top" and b == "right") then
+    elseif (a == "right" and b == "top") or (a == "top" and b == "right") then
         deg = 45
-    end
-    if (a == "right" and b == "bot") or (a == "bot" and b == "right") then
+    elseif (a == "right" and b == "bot") or (a == "bot" and b == "right") then
         deg = 135
-    end
-    if (a == "left" and b == "bot") or (a == "bot" and b == "left") then
+    elseif (a == "left" and b == "bot") or (a == "bot" and b == "left") then
         deg = 225
     end
     love.graphics.draw(self.spaceship, self.x, self.y, math.rad(deg), 1, 1, self.half, self.half)
