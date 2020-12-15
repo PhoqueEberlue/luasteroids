@@ -24,25 +24,25 @@ function Observee:notifyObserver(player_pos, player_size, soundasteroid)
     local already_redirected = {}
     for _, enemy in pairs(self.list_enemys) do
         for _, redirected in pairs(already_redirected) do
-            stop = true
-        end
-        if stop then
-            stop = false
-            break
-        end
-        for _, enemy2 in pairs(self.list_enemys) do
-            if enemy ~= enemy2 and enemy:collide({x = enemy2.x, y = enemy2.y}, enemy2.size) then
-                local savex = enemy2.xspeed
-                local savey = enemy2.yspeed
-                enemy2.xspeed = enemy.xspeed
-                enemy2.yspeed = enemy.yspeed
-                enemy.xspeed = savex
-                enemy.yspeed = savey
-                print("oui")
-                soundasteroid:stop()
-                soundasteroid:play()
-                table.insert(already_redirected, enemy2)
+            if redirected == enemy then
+                stop = true
                 break
+            end
+        end
+        if not stop then
+            for _, enemy2 in pairs(self.list_enemys) do
+                if enemy ~= enemy2 and enemy:collide({x = enemy2.x, y = enemy2.y}, enemy2.size) then
+                    local savex = enemy2.xspeed
+                    local savey = enemy2.yspeed
+                    enemy2.xspeed = enemy.xspeed
+                    enemy2.yspeed = enemy.yspeed
+                    enemy.xspeed = savex
+                    enemy.yspeed = savey
+                    soundasteroid:stop()
+                    soundasteroid:play()
+                    table.insert(already_redirected, enemy2)
+                    break
+                end
             end
         end
         if enemy:collide(player_pos, player_size) then
