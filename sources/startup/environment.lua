@@ -16,13 +16,15 @@ function Environment:new(player, enemys, window, asteroids)
     env.enemys = enemys
     env.window = window
     env.asteroids = asteroids
+    env.soundasteroid = love.audio.newSource("sources/sound/asteroidimpact.mp3", "static")
+    env.soundasteroid:setVolume(0.1)
     return env
 end
 
 function Environment:update(dt)
     self.player:update(dt)
     self.enemys:update(dt)
-    local nbCollission = self.enemys:notifyObserver(self.player:getPos(), self.player:getSize())
+    local nbCollission = self.enemys:notifyObserver(self.player:getPos(), self.player:getSize(), self.soundasteroid)
     if nbCollission > 0 then
         self.player:setHp(self.player:getHp() - nbCollission)
         Hp = Hp - nbCollission

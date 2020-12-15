@@ -42,6 +42,7 @@ end
 
 function Enemy:draw()
     love.graphics.draw(self.asteroid, self.x, self.y, math.rad(self.rotation), 1, 1, self.half, self.half)
+    -- love.graphics.print(tostring(self), self.x - self.size, self.y - self.size) -- for debug purposes
 end
 
 function Enemy:isOutOfScreen()

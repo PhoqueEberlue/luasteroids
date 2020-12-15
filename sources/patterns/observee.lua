@@ -1,3 +1,5 @@
+require("sources/lib/customFunctions")
+
 Observee = {list_enemys = {}}
 Observee.__index = Observee
 
@@ -16,17 +18,30 @@ function Observee:removeObserver(enemy)
     table.remove(self.list_enemys, index)
 end
 
-function Observee:notifyObserver(player_pos, player_size)
+function Observee:notifyObserver(player_pos, player_size, soundasteroid)
     local res = 0
+    local stop = false
+    local already_redirected = {}
     for _, enemy in pairs(self.list_enemys) do
+        for _, redirected in pairs(already_redirected) do
+            stop = true
+        end
+        if stop then
+            stop = false
+            break
+        end
         for _, enemy2 in pairs(self.list_enemys) do
-            if enemy:collide({x = enemy2.x, y = enemy2.y}, enemy2.size) then
+            if enemy ~= enemy2 and enemy:collide({x = enemy2.x, y = enemy2.y}, enemy2.size) then
                 local savex = enemy2.xspeed
                 local savey = enemy2.yspeed
                 enemy2.xspeed = enemy.xspeed
                 enemy2.yspeed = enemy.yspeed
                 enemy.xspeed = savex
                 enemy.yspeed = savey
+                print("oui")
+                soundasteroid:stop()
+                soundasteroid:play()
+                table.insert(already_redirected, enemy2)
                 break
             end
         end
